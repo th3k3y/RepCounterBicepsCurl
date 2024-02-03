@@ -1,6 +1,6 @@
 # RepCounter
 
-This project is a web-based application utilizing Flask to create a Pose Estimation API. It leverages OpenCV for video processing and MediaPipe for pose estimation, particularly focusing on arm movements. The application tracks the arm's angle and counts movements, which could be used for various purposes like monitoring exercise movements (e.g., bicep curls).
+This project is a web-based application utilizing Flask to create a Pose Estimation API. It leverages OpenCV for video processing and MediaPipe for pose estimation, particularly focusing on arm movements. The application tracks the arm's angle and counts movements and especially biceps curl repetitions.
 
 ![screencapture-localhost-5000-2024-02-03-22_36_21](https://github.com/th3k3y/RepCounterBicepsCurl/assets/49789253/3033e516-ef54-4927-866a-8d9eb7e4c35a)
 
