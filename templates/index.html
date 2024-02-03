@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>th3k3y | Biceps Curl Tracker</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        :root {
+            --white: #ffffff;
+            --bgColor: #121212;
+        }
+
+        body {
+            text-align: center;
+            background-color: var(--bgColor);
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 95vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            overflow-x: hidden; /* Prevent horizontal scrolling */
+        }
+        #logo {
+            max-width: 100%;
+            height: auto;
+        }
+        #videoContainer {
+            padding: 8px;
+        }
+        #videoContainer img {
+            display: block;
+            max-width: 600px;
+            max-height: 400px;
+            box-shadow: -50px -50px 0 -40px var(--white), 50px 50px 0 -40px var(--white);
+        }
+        #controlPanel {
+            text-align: center;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 10px;
+        }
+        #controlPanel input, #controlPanel label, #counter {
+            margin: 5px;
+            padding: 5px;
+            background-color: #555;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+        }
+        #counter {
+            display: inline-block;
+            padding: 10px;
+        }
+        .button-31 {
+            background-color: #222;
+            border-radius: 4px;
+            border-style: none;
+            box-sizing: border-box;
+            color: #fff;
+            cursor: pointer;
+            display: inline-block;
+            font-family: "Farfetch Basis","Helvetica Neue",Arial,sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            line-height: 1.5;
+            margin: 0;
+            max-width: none;
+            min-height: 30px;
+            min-width: 80px;
+            outline: none;
+            overflow: hidden;
+            padding: 6px 15px 6px;
+            position: relative;
+            text-align: center;
+            text-transform: none;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            width: auto;
+        }
+        .button-31:hover,
+        .button-31:focus {
+            opacity: .75;
+        }
+        /* Social media icons 3D glitch effect */
+        .container {
+            width: 100%;
+            background-color: transparent;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px 0;
+        }
+        .icon {
+            padding: 10px;
+            animation: icon3d 200ms 10;
+            color: var(--white);
+            font-size: 2em; /* Adjusted size */
+        }
+        .icon:hover {
+            animation: icon3d 200ms infinite;
+        }
+        @keyframes icon3d {
+            0% { text-shadow: 5px 4px rgba(244,67,54,1), -5px -6px rgba(33,150,243,1); }
+            25% { text-shadow: -5px -6px rgba(244,67,54,1), 5px 4px rgba(33,150,243,1); }
+            50% { text-shadow: 5px -4px rgba(244,67,54,1), -8px 4px rgba(33,150,243,1); }
+            75% { text-shadow: -8px -4px rgba(244,67,54,1), -5px -4px rgba(33,150,243,1); }
+            100% { text-shadow: -5px 0 rgba(244,67,54,1), 5px -4px rgba(33,150,243,1); }
+        }
+    </style>
+    <script>
+        function startTracking() {
+            fetch('/start_tracking', { method: 'POST' });
+        }
+        function stopTracking() {
+            fetch('/stop_tracking', { method: 'POST' });
+        }
+        function resetScore() {
+            fetch('/reset_score', { method: 'POST' });
+        }
+        function updateCounter() {
+            fetch('/get_counter')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('counter').innerText = `Score: ${data.counter}`;
+                });
+        }
+        setInterval(updateCounter, 1000);
+    </script>
+</head>
+<body>
+    <img id="logo" src="{{ url_for('static', filename='2.png') }}" alt="Biceps Curl Tracker Logo" width="400px">
+    <div id="controlPanel">
+        <button class="button-31" role="button" onclick="startTracking()">Start Tracking</button>
+        <button class="button-31" role="button" onclick="stopTracking()">Stop Tracking</button>
+        <button class="button-31" role="button" onclick="resetScore()">Reset Score</button>
+        <div id="counter">Score: 0</div>
+    </div>
+    <div id="videoContainer">
+        <img src="{{ url_for('video_feed') }}" width="600px" class="framed">
+    </div>
+    <!-- Social media icons -->
+    <div class="container">
+        <i class="fa fa-twitter fa-2x icon"></i>
+        <i class="fa fa-github fa-2x icon"></i>
+    </div>
+</body>
+</html>
