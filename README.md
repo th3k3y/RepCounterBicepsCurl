@@ -2,6 +2,8 @@
 
 This project is a web-based application utilizing Flask to create a Pose Estimation API. It leverages OpenCV for video processing and MediaPipe for pose estimation, particularly focusing on arm movements. The application tracks the arm's angle and counts movements, which could be used for various purposes like monitoring exercise movements (e.g., bicep curls).
 
+![Uploading Untitled design (online-video-cutter.com).gif…]()
+
 ## Features
 
 - Real-time video streaming and pose estimation.
