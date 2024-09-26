@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>th3k3y | Biceps Curl Tracker</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/pose/pose.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        #logo {
+            max-width: 100%;
+            height: auto;
+        }
+        #controlPanel {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        #videoContainer {
+            width: 100%;
+            max-width: 600px;
+        }
+        .output_canvas {
+            width: 100%;
+            height: auto;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        @media (max-width: 600px) {
+            #controlPanel {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <img id="logo" src="{{ url_for('static', filename='2.png') }}" alt="Biceps Curl Tracker Logo" width="400">
+    <div id="controlPanel">
+        <button class="button-31" role="button" id="startBtn">Start Tracking</button>
+        <button class="button-31" role="button" id="stopBtn">Stop Tracking</button>
+        <button class="button-31" role="button" id="resetBtn">Reset Score</button>
+        <div id="counter">Score: 0</div>
+    </div>
+    <div id="videoContainer">
+        <video class="input_video" style="display: none;"></video>
+        <canvas class="output_canvas" width="600" height="400"></canvas>
+    </div>
+    <!-- Social media icons -->
+    <div class="container">
+        <i class="fa fa-twitter fa-2x icon"></i>
+        <i class="fa fa-github fa-2x icon"></i>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
